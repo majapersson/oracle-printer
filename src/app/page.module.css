@@ -13,8 +13,8 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
   background-color: var(--background);
+  background: radial-gradient(72.65% 72.65% at 50% 50%,var(--purple-light) 0%, var(--purple) 100%);
 }
 
 .main {
@@ -25,7 +25,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: var(--foreground);
   padding: 120px 60px;
 }
 
@@ -42,7 +41,6 @@
   font-size: 40px;
   font-weight: 600;
   line-height: 48px;
-  letter-spacing: -2.4px;
   text-wrap: balance;
   color: var(--text-primary);
 }
@@ -118,7 +116,6 @@ a.secondary {
   .intro h1 {
     font-size: 32px;
     line-height: 40px;
-    letter-spacing: -1.92px;
   }
 }
 
