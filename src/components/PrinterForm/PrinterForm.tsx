@@ -3,7 +3,9 @@
 import Button from "../Button/Button";
 import styles from "./PrinterForm.module.css";
 import { redirect } from "next/navigation";
+import { createPredictionPdf } from "../../helpers/createPredictionPdf";
 import { getPredictionAction } from "../../helpers/getPredictionAction";
+import { sendToPrinterAction } from "../../helpers/sendToPrinterAction";
 
 export default function PrinterForm() {
 
@@ -12,6 +14,8 @@ export default function PrinterForm() {
     const question = e.target.question?.value;
 
     const prediction = await getPredictionAction(question);
+    const filename = await createPredictionPdf(prediction);
+    await sendToPrinterAction(filename);
     redirect(`/${prediction}`);
   }
 
