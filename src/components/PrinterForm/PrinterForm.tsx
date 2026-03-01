@@ -6,6 +6,9 @@ import { redirect } from "next/navigation";
 import { createPredictionPdf } from "../../helpers/createPredictionPdf";
 import { getPredictionAction } from "../../helpers/getPredictionAction";
 import { sendToPrinterAction } from "../../helpers/sendToPrinterAction";
+import Cards from "../../assets/images/cards.png";
+import Eye from "../../assets/images/eye.png";
+import Image from "next/image";
 
 export default function PrinterForm() {
 
@@ -21,8 +24,15 @@ export default function PrinterForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <input className={styles.input} type="text" name="question" placeholder="Ask your question…" />
-      <Button type="submit">Seek answers</Button>
+      <div className={styles.inputContainer}>
+        <input className={styles.input} type="text" name="question" placeholder="Ask your question…" />
+        <span className={styles.inputIcon} />
+      </div>
+      <div className={styles.buttonContainer}>
+        <Image src={Cards} alt="Cards" className={styles.cards} />
+        <Button type="submit" className={styles.button}>Seek answers</Button>
+        <Image src={Eye} alt="Eye" className={styles.eye} />
+      </div>
     </form>
   );
 }

@@ -6,7 +6,7 @@ import styles from "./Button.module.css";
 export default function Button({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button className={`${styles.button} ${className}`} {...props}>
-      {children}
+      <span className={styles.content}>{children}</span>
     </button>
   );
 }
