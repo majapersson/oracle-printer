@@ -1,0 +1,15 @@
+.button {
+  font-family: var(--font-family-primary);
+  padding: 10px 20px;
+  border: 1px solid var(--purple-light);
+  border-radius: 50px;
+  background-color: var(--purple-dark);
+  font-size: 20px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--purple-light);
+  }
+}

@@ -1,0 +1,33 @@
+.form {
+  font-family: var(--font-family-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 8px 8px 32px;
+  border: 1px solid var(--purple-light);
+  border-radius: 50px;
+  background-color: transparent;
+  font-size: 40px;
+  color: var(--text-light);
+
+  &:focus {
+    outline: none;
+    border-color: var(--text-light);
+
+    &::placeholder {
+      visibility: hidden;
+    }
+  }
+
+  &::placeholder {
+    color: var(--text-light);
+  }
+}
