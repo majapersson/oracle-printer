@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   color: var(--text-light);
+  position: relative;
 }
 
 .main {
@@ -14,6 +15,8 @@
   align-items: center;
   justify-content: center;
   width: 75%;
+  position: relative;
+  z-index: 1;
 }
 
 .crystalBall {
