@@ -23,8 +23,9 @@ export default function PrinterForm() {
     setPredictionState("loading");
     const question = e.target.question?.value;
 
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     const prediction = await getPredictionAction(question);
-    setPredictionState("success");
     // const filename = await createPredictionPdf(prediction);
     // await sendToPrinterAction(filename);
     router.push(`/${prediction}`);
@@ -32,6 +33,10 @@ export default function PrinterForm() {
 
   return (
     <form onSubmit={handleSubmit} className={cx("form")}>
+      {predictionState === "loading" ?
+        <h1 className={cx("title")} data-loading="true">The Oracle is thinking…</h1> :
+        <h1 className={cx("title")}>What do you wish to know?</h1>
+      }
       <div className={cx("inputContainer")}>
         <input className={cx("input")} type="text" name="question" placeholder="Ask your question…" />
         <span className={cx("inputIcon")} data-loading={predictionState === "loading"} />

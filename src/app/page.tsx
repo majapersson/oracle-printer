@@ -17,7 +17,6 @@ export default function Home() {
       <Orbs count={30} />
       <main className={cx("main")}>
         <Image src={CrystalBall} alt="Crystal Ball" className={cx("crystalBall")} />
-        <h1 className={cx("title")}>What do you wish to know?</h1>
         <PrinterForm />
       </main>
       <Swirl className={cx("swirl")} data-position="bottom-left" />

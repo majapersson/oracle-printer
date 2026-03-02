@@ -25,11 +25,6 @@
   width: min(50%, 250px);
 }
 
-.title {
-  font-size: clamp(2.25rem, 1.6786rem + 2.8571vw, 4.25rem);
-  letter-spacing: 0.02em;
-}
-
 .swirl {
   width: min(50%, 400px);
   height: auto;
