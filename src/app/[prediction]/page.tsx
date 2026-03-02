@@ -3,9 +3,10 @@ import styles from "./page.module.css";
 
 export default async function Prediction({ params }: { params: { prediction: string } }) {
 
-  const { prediction: predictionBase64 } = await params;
+  const { prediction: predictionBase64Url } = await params;
 
-  const prediction = Buffer.from(predictionBase64, 'base64').toString("utf-8");
+  const predictionBase64 = decodeURIComponent(predictionBase64Url);
+  const prediction = Buffer.from(predictionBase64, 'base64').toString('utf-8');
 
   return (
     <div className={styles.page}>
