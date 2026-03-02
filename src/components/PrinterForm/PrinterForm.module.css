@@ -12,7 +12,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: 16px;
   width: 100%;
   max-width: 650px;
   border: 1px solid var(--purple-light);
@@ -29,6 +28,7 @@
   background-color: transparent;
   font-size: 40px;
   color: var(--text-light);
+  width: 100%;
 
   &:focus-visible {
     outline: none;
