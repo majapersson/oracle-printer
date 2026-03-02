@@ -2,7 +2,7 @@
 
 import Button from "../Button/Button";
 import styles from "./PrinterForm.module.css";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createPredictionPdf } from "../../helpers/createPredictionPdf";
 import { getPredictionAction } from "../../helpers/getPredictionAction";
 import { sendToPrinterAction } from "../../helpers/sendToPrinterAction";
@@ -11,6 +11,7 @@ import Eye from "../../assets/images/eye.png";
 import Image from "next/image";
 
 export default function PrinterForm() {
+  const router = useRouter();
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ export default function PrinterForm() {
     const prediction = await getPredictionAction(question);
     // const filename = await createPredictionPdf(prediction);
     // await sendToPrinterAction(filename);
-    redirect(`/${prediction}`);
+    router.push(`/${prediction}`);
   }
 
   return (
