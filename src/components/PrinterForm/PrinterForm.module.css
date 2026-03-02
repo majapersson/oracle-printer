@@ -16,7 +16,7 @@
   max-width: 650px;
   border: 1px solid var(--purple-light);
   border-radius: 50px;
-  padding: 8px 8px 8px 32px;
+  padding: 0.5em 0.5em 0.5em 2em;
 
   &:focus-within {
     border-color: var(--pink);
@@ -26,7 +26,7 @@
 .input {
   border: none;
   background-color: transparent;
-  font-size: 40px;
+  font-size: clamp(1.125rem, 0.7321rem + 1.9643vw, 2.5rem);
   color: var(--text-light);
   width: 100%;
 
@@ -73,21 +73,33 @@
 }
 
 .buttonContainer {
-  display: flex;
+  display: grid;
+  grid-template-areas: "button button" "cards eye";
+  row-gap: 30px;
   align-items: center;
-  justify-content: space-between;
-  column-gap: 50px;
+  justify-items: center;
   width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-areas: "cards button eye";
+  }
+}
+
+.button {
+  grid-area: button;
+  justify-self: stretch;
 }
 
 .cards {
-  width: 300px;
+  width: min(100%, 300px);
   height: auto;
+  grid-area: cards;
 }
 
 .eye {
-  width: 300px;
+  width: min(100%, 300px);
   height: auto;
+  grid-area: eye;
 }
 
 @keyframes spin {

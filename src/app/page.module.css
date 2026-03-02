@@ -14,24 +14,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 75%;
+  width: min(100%, 1440px);
   position: relative;
+  padding: 30px;
   z-index: 1;
 }
 
 .crystalBall {
   height: auto;
-  width: 250px;
+  width: min(50%, 250px);
 }
 
 .title {
-  font-size: 68px;
+  font-size: clamp(2.25rem, 1.6786rem + 2.8571vw, 4.25rem);
   letter-spacing: 0.02em;
 }
 
 .swirl {
+  width: min(50%, 400px);
   height: auto;
-  width: 400px;
   fill: var(--purple);
   opacity: 0.4;
   stroke-width: 0.1px;
