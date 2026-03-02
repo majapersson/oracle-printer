@@ -17,8 +17,8 @@ export default function PrinterForm() {
     const question = e.target.question?.value;
 
     const prediction = await getPredictionAction(question);
-    const filename = await createPredictionPdf(prediction);
-    await sendToPrinterAction(filename);
+    // const filename = await createPredictionPdf(prediction);
+    // await sendToPrinterAction(filename);
     redirect(`/${prediction}`);
   }
 
