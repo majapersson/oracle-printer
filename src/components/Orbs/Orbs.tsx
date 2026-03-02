@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
+import classNames from "classnames/bind";
 import styles from "./Orbs.module.css";
+
+const cx = classNames.bind(styles);
 
 type OrbsProps = {
   count?: number;
@@ -41,9 +44,9 @@ export default function Orbs({ count = 14, className }: OrbsProps) {
   }, [count]);
 
   return (
-    <div className={`${styles.orbs} ${className ?? ""}`}>
+    <div className={cx("orbs", className)}>
       {orbs.map(({ key, style }) => (
-        <span key={key} className={styles.orb} style={style} />
+        <span key={key} className={cx("orb")} style={style} />
       ))}
     </div>
   );

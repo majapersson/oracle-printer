@@ -1,5 +1,8 @@
 import Swirl from "../../components/Swirl/Swirl";
+import classNames from "classnames/bind";
 import styles from "./page.module.css";
+
+const cx = classNames.bind(styles);
 
 export default async function Prediction({ params }: { params: { prediction: string } }) {
 
@@ -9,14 +12,14 @@ export default async function Prediction({ params }: { params: { prediction: str
   const prediction = Buffer.from(predictionBase64, 'base64').toString('utf-8');
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Swirl className={styles.swirl} data-position="top-left" />
-        <Swirl className={styles.swirl} data-position="top-right" />
-        {prediction && <h1 className={styles.title}>{prediction}</h1>}
-        <span className={styles.greeting}>- The Oracle Printer</span>
-        <Swirl className={styles.swirl} data-position="bottom-left" />
-        <Swirl className={styles.swirl} data-position="bottom-right" />
+    <div className={cx("page")}>
+      <main className={cx("main")}>
+        <Swirl className={cx("swirl")} data-position="top-left" />
+        <Swirl className={cx("swirl")} data-position="top-right" />
+        {prediction && <h1 className={cx("title")}>{prediction}</h1>}
+        <span className={cx("greeting")}>- The Oracle Printer</span>
+        <Swirl className={cx("swirl")} data-position="bottom-left" />
+        <Swirl className={cx("swirl")} data-position="bottom-right" />
       </main>
     </div>
   );

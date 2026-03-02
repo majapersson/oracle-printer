@@ -10,6 +10,9 @@ import { sendToPrinterAction } from "../../helpers/sendToPrinterAction";
 import Cards from "../../assets/images/cards.png";
 import Eye from "../../assets/images/eye.png";
 import Image from "next/image";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
 
 export default function PrinterForm() {
   const router = useRouter();
@@ -28,15 +31,15 @@ export default function PrinterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.inputContainer}>
-        <input className={styles.input} type="text" name="question" placeholder="Ask your question…" />
-        <span className={styles.inputIcon} data-loading={predictionState === "loading"} />
+    <form onSubmit={handleSubmit} className={cx("form")}>
+      <div className={cx("inputContainer")}>
+        <input className={cx("input")} type="text" name="question" placeholder="Ask your question…" />
+        <span className={cx("inputIcon")} data-loading={predictionState === "loading"} />
       </div>
-      <div className={styles.buttonContainer}>
-        <Image src={Cards} alt="Cards" className={styles.cards} />
-        <Button type="submit" className={styles.button} disabled={predictionState === "loading"}>Seek answers</Button>
-        <Image src={Eye} alt="Eye" className={styles.eye} />
+      <div className={cx("buttonContainer")}>
+        <Image src={Cards} alt="Cards" className={cx("cards")} />
+        <Button type="submit" className={cx("button")} disabled={predictionState === "loading"}>Seek answers</Button>
+        <Image src={Eye} alt="Eye" className={cx("eye")} />
       </div>
     </form>
   );
