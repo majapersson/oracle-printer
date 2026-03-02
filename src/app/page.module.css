@@ -28,3 +28,13 @@
   font-size: 68px;
   letter-spacing: 0.02em;
 }
+
+.swirl {
+  height: auto;
+  width: 400px;
+  fill: var(--purple);
+  opacity: 0.4;
+  stroke-width: 0.1px;
+  stroke: var(--text-light);
+  filter: drop-shadow(0 2px 16px rgba(245, 184, 255, 0.10));
+}

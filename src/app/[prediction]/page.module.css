@@ -33,28 +33,10 @@
 }
 
 .swirl {
-  position: absolute;
-
-  &[data-position="top-left"] {
-    top: 0;
-    left: 0;
-  }
-
-  &[data-position="top-right"] {
-    top: 0;
-    right: 0;
-    transform: rotate(90deg);
-  }
-
-  &[data-position="bottom-left"] {
-    bottom: 0;
-    left: 0;
-    transform: rotate(270deg);
-  }
-
-  &[data-position="bottom-right"] {
-    bottom: 0;
-    right: 0;
-    transform: rotate(180deg);
-  }
+  height: auto;
+  width: 200px;
+  fill: var(--purple-light);
+  stroke-width: 0.1px;
+  stroke: var(--text-light);
+  filter: drop-shadow(0 2px 16px rgba(245, 184, 255, 0.10));
 }
