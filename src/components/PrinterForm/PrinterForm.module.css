@@ -44,7 +44,9 @@
 }
 
 .inputIcon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--purple-dark);
   border-radius: 50%;
   background-image: url("../../assets/images/support-icon.svg");
@@ -54,6 +56,20 @@
   width: 56px;
   height: 56px;
   flex-shrink: 0;
+
+  &::after {
+    content:  "";
+    background-image: url("../../assets/images/support-circle.svg");
+    background-size: 75% 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &[data-loading="true"]::after {
+    animation: spin 4s linear infinite;
+  }
 }
 
 .buttonContainer {
@@ -72,4 +88,13 @@
 .eye {
   width: 300px;
   height: auto;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

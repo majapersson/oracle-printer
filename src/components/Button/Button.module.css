@@ -19,6 +19,12 @@
   &:focus-visible {
     outline: 2px solid var(--pink);
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
 .content {
@@ -30,11 +36,11 @@
   border-radius: 50px;
   transition: background-color 0.3s ease;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--purple);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     background-color: var(--purple-dark);
   }
 }
