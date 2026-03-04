@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import styles from "./PrinterForm.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { createPredictionPdf } from "../../helpers/createPredictionPdf";
+import { createPredictionFile } from "../../helpers/createPredictionFile";
 import { getPredictionAction } from "../../helpers/getPredictionAction";
 import { sendToPrinterAction } from "../../helpers/sendToPrinterAction";
 import Cards from "../../assets/images/cards.png";
@@ -26,7 +26,7 @@ export default function PrinterForm() {
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     const prediction = await getPredictionAction(question);
-    // const filename = await createPredictionPdf(prediction);
+    const filename = await createPredictionFile(prediction);
     // await sendToPrinterAction(filename);
     router.push(`/${prediction}`);
   }

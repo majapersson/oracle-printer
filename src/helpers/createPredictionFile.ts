@@ -4,7 +4,7 @@ import puppeteer from "puppeteer";
 import { v4 as uuidv4 } from "uuid";
 import { getOutputPath } from "./getOutputPath";
 
-export async function createPredictionPdf(prediction: string) {
+export async function createPredictionFile(prediction: string) {
   const filename = `${uuidv4()}.pdf`;
   const outputPath = getOutputPath(filename);
 
