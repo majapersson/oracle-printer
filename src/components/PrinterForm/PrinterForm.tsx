@@ -27,8 +27,14 @@ export default function PrinterForm() {
 
     const prediction = await getPredictionAction(question);
     const filename = await createPredictionFile(prediction);
-    // await sendToPrinterAction(filename);
-    router.push(`/${prediction}`);
+    const { redirect } = await sendToPrinterAction(filename);
+    if (redirect) {
+      router.push(`/${prediction}`);
+    } else {
+      setPredictionState("success");
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setPredictionState("idle");
+    }
   }
 
   return (

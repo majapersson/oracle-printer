@@ -1,15 +1,17 @@
 "use server";
-import { getDefaultPrinter, print } from 'unix-print';
+
+import { exec } from "child_process";
 import { getOutputPath } from "./getOutputPath";
 
 export async function sendToPrinterAction(filename: string) {
-  const printer = await getDefaultPrinter();
-  if (!printer) {
-    throw new Error("No printer found");
+  const windowsPrinter = process.env.WINDOWS_PRINTER_NAME;
+  const windowsComputerName = process.env.WINDOWS_COMPUTER_NAME;
+
+  if (windowsPrinter && windowsComputerName && process.platform === "win32") {
+    const outputPath = getOutputPath(filename);
+    exec(`print \/D:\\\\${windowsComputerName}\\${windowsPrinter} ${outputPath}`);
+    return { redirect: false };
   }
 
-  await print(getOutputPath(filename)).catch((error) => {
-    console.error(error);
-    throw new Error("Failed to print file");
-  });
+  return { redirect: true };
 }
