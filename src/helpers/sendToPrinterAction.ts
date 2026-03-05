@@ -10,8 +10,5 @@ export async function sendToPrinterAction(filename: string) {
   if (windowsPrinter && windowsComputerName && process.platform === "win32") {
     const outputPath = getOutputPath(filename);
     exec(`print \/D:\\\\${windowsComputerName}\\${windowsPrinter} ${outputPath}`);
-    return { redirect: false };
   }
-
-  return { redirect: true };
 }

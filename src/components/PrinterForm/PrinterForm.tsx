@@ -22,19 +22,20 @@ export default function PrinterForm() {
     e.preventDefault();
     setPredictionState("loading");
     const question = e.target.question?.value;
-
     await new Promise(resolve => setTimeout(resolve, 2000));
-
     const prediction = await getPredictionAction(question);
-    const filename = await createPredictionFile(prediction);
-    const { redirect } = await sendToPrinterAction(filename);
-    if (redirect) {
+
+    const shouldPrintFile = process.env.NEXT_PUBLIC_WINDOWS_PRINTER_NAME && process.env.NEXT_PUBLIC_WINDOWS_COMPUTER_NAME;
+    if (!shouldPrintFile) {
       router.push(`/${prediction}`);
-    } else {
-      setPredictionState("success");
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setPredictionState("idle");
+      return;
     }
+
+    const filename = await createPredictionFile(prediction);
+    await sendToPrinterAction(filename);
+    setPredictionState("success");
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setPredictionState("idle");
   }
 
   return (
