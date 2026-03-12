@@ -10,6 +10,10 @@ import Swirl from "../components/Swirl/Swirl";
 import classNames from "classnames/bind";
 import styles from "./page.module.css";
 import { useState } from "react";
+import { sendToPrinterAction } from "../helpers/sendToPrinterAction";
+import { createPredictionFile } from "../helpers/createPredictionFile";
+import { getPredictionAction } from "../helpers/getPredictionAction";
+import { useRouter } from "next/navigation";
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +22,29 @@ export type PredictionState = "idle" | "loading" | "success" | "error";
 export default function Home() {
   const [predictionState, setPredictionState] =
     useState<PredictionState>("idle");
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setPredictionState("loading");
+    const question = e.target.question?.value;
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const prediction = await getPredictionAction(question);
+
+    const shouldPrintFile =
+      process.env.NEXT_PUBLIC_WINDOWS_PRINTER_NAME &&
+      process.env.NEXT_PUBLIC_WINDOWS_COMPUTER_NAME;
+    if (!shouldPrintFile) {
+      router.push(`/${prediction}`);
+      return;
+    }
+
+    const filename = await createPredictionFile(prediction);
+    await sendToPrinterAction(filename);
+    setPredictionState("success");
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    setPredictionState("idle");
+  };
 
   return (
     <div className={cx("page")}>
@@ -39,8 +66,8 @@ export default function Home() {
           ) : (
             <PrinterForm
               className={cx("formSlot")}
-              predictionState={predictionState}
-              setPredictionState={setPredictionState}
+              onSubmit={handleSubmit}
+              isLoading={predictionState === "loading"}
             />
           )}
         </div>
