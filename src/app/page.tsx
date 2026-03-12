@@ -9,7 +9,7 @@ import Orbs from "../components/Orbs/Orbs";
 import Swirl from "../components/Swirl/Swirl";
 import classNames from "classnames/bind";
 import styles from "./page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sendToPrinterAction } from "../helpers/sendToPrinterAction";
 import { createPredictionFile } from "../helpers/createPredictionFile";
 import { getPredictionAction } from "../helpers/getPredictionAction";
@@ -23,6 +23,11 @@ export default function Home() {
   const [predictionState, setPredictionState] =
     useState<PredictionState>("idle");
   const router = useRouter();
+
+  useEffect(() => {
+    (document.activeElement as HTMLElement)?.blur();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [predictionState]);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
