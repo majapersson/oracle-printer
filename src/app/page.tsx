@@ -1,6 +1,7 @@
-
 import PrinterForm from "../components/PrinterForm/PrinterForm";
 import CrystalBall from "../assets/images/crystal-ball.png";
+import Cards from "../assets/images/cards.png";
+import Eye from "../assets/images/eye.png";
 import Image from "next/image";
 import Orbs from "../components/Orbs/Orbs";
 import Swirl from "../components/Swirl/Swirl";
@@ -16,8 +17,16 @@ export default function Home() {
       <Swirl className={cx("swirl")} data-position="top-right" />
       <Orbs count={30} />
       <main className={cx("main")}>
-        <Image src={CrystalBall} alt="Crystal Ball" className={cx("crystalBall")} />
-        <PrinterForm />
+        <Image
+          src={CrystalBall}
+          alt="Crystal Ball"
+          className={cx("crystalBall")}
+        />
+        <PrinterForm className={cx("formSlot")} />
+        <div className={cx("imageContainer")}>
+          <Image src={Cards} alt="Cards" className={cx("cards")} />
+          <Image src={Eye} alt="Eye" className={cx("eye")} />
+        </div>
       </main>
       <Swirl className={cx("swirl")} data-position="bottom-left" />
       <Swirl className={cx("swirl")} data-position="bottom-right" />

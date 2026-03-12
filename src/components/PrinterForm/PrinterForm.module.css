@@ -67,7 +67,7 @@
   flex-shrink: 0;
 
   &::after {
-    content:  "";
+    content: "";
     background-image: url("../../assets/images/support-circle.svg");
     background-size: 75% 75%;
     background-repeat: no-repeat;
@@ -81,34 +81,14 @@
   }
 }
 
-.buttonContainer {
-  display: grid;
-  grid-template-areas: "button button" "cards eye";
-  row-gap: 30px;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-
-  @media (min-width: 768px) {
-    grid-template-areas: "cards button eye";
-  }
-}
-
 .button {
-  grid-area: button;
-  justify-self: stretch;
-}
+  width: 100%;
+  max-width: 650px;
 
-.cards {
-  width: min(100%, 300px);
-  height: auto;
-  grid-area: cards;
-}
-
-.eye {
-  width: min(100%, 300px);
-  height: auto;
-  grid-area: eye;
+  @media (min-width: 1220px) {
+    width: auto;
+    margin-block: 100px;
+  }
 }
 
 @keyframes spin {

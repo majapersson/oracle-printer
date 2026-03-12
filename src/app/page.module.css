@@ -1,7 +1,7 @@
 .page {
   display: flex;
   min-height: 100vh;
-  background: url('../assets/images/background.png') no-repeat center center;
+  background: url("../assets/images/background.png") no-repeat center center;
   background-size: cover;
   align-items: center;
   justify-content: center;
@@ -10,6 +10,7 @@
 }
 
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +26,38 @@
   width: min(50%, 250px);
 }
 
+.formSlot {
+  grid-area: button;
+  justify-self: stretch;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: min(100%, 1220px);
+  margin-top: 30px;
+
+  @media (min-width: 1220px) {
+    position: absolute;
+    bottom: 0;
+    justify-content: space-between;
+    padding-inline: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.cards {
+  width: min(50%, 300px);
+  height: auto;
+}
+
+.eye {
+  width: min(50%, 300px);
+  height: auto;
+}
+
 .swirl {
   width: min(50%, 400px);
   height: auto;
@@ -32,5 +65,5 @@
   opacity: 0.4;
   stroke-width: 0.1px;
   stroke: var(--text-light);
-  filter: drop-shadow(0 2px 16px rgba(245, 184, 255, 0.10));
+  filter: drop-shadow(0 2px 16px rgba(245, 184, 255, 0.1));
 }
