@@ -3,19 +3,24 @@
 import Button from "../Button/Button";
 import styles from "./PrinterForm.module.css";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { createPredictionFile } from "../../helpers/createPredictionFile";
 import { getPredictionAction } from "../../helpers/getPredictionAction";
 import { sendToPrinterAction } from "../../helpers/sendToPrinterAction";
 import classNames from "classnames/bind";
+import type { PredictionState } from "../../app/page";
 
 const cx = classNames.bind(styles);
 
-export default function PrinterForm({ className }: { className?: string }) {
+export default function PrinterForm({
+  className,
+  predictionState,
+  setPredictionState,
+}: {
+  className?: string;
+  predictionState: PredictionState;
+  setPredictionState: (state: PredictionState) => void;
+}) {
   const router = useRouter();
-  const [predictionState, setPredictionState] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,7 +40,7 @@ export default function PrinterForm({ className }: { className?: string }) {
     const filename = await createPredictionFile(prediction);
     await sendToPrinterAction(filename);
     setPredictionState("success");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     setPredictionState("idle");
   };
 

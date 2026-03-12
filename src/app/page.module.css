@@ -16,9 +16,12 @@
   align-items: center;
   justify-content: center;
   width: min(100%, 1440px);
+  height: 100%;
+  min-height: 100vh;
   position: relative;
-  padding: 30px;
+  padding: 80px;
   z-index: 1;
+  isolation: isolate;
 }
 
 .crystalBall {
@@ -44,7 +47,23 @@
     bottom: 0;
     justify-content: space-between;
     padding-inline: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 80px;
+    z-index: 0;
+  }
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.title {
+  font-size: clamp(2.25rem, 1.6786rem + 2.8571vw, 4.25rem);
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 0 50px color-mix(in srgb, var(--pink) 100%, transparent);
+
+  &[data-loading="true"] {
+    animation: glow 2s linear infinite alternate;
   }
 }
 

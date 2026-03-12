@@ -1,3 +1,5 @@
+"use client";
+
 import PrinterForm from "../components/PrinterForm/PrinterForm";
 import CrystalBall from "../assets/images/crystal-ball.png";
 import Cards from "../assets/images/cards.png";
@@ -7,10 +9,16 @@ import Orbs from "../components/Orbs/Orbs";
 import Swirl from "../components/Swirl/Swirl";
 import classNames from "classnames/bind";
 import styles from "./page.module.css";
+import { useState } from "react";
 
 const cx = classNames.bind(styles);
 
+export type PredictionState = "idle" | "loading" | "success" | "error";
+
 export default function Home() {
+  const [predictionState, setPredictionState] =
+    useState<PredictionState>("idle");
+
   return (
     <div className={cx("page")}>
       <Swirl className={cx("swirl")} data-position="top-left" />
@@ -22,7 +30,20 @@ export default function Home() {
           alt="Crystal Ball"
           className={cx("crystalBall")}
         />
-        <PrinterForm className={cx("formSlot")} />
+        <div className={cx("content")}>
+          {predictionState === "success" ? (
+            <h1 className={cx("title")}>
+              Follow the sound of the mechanical clicking, the outcome is
+              already formatted.
+            </h1>
+          ) : (
+            <PrinterForm
+              className={cx("formSlot")}
+              predictionState={predictionState}
+              setPredictionState={setPredictionState}
+            />
+          )}
+        </div>
         <div className={cx("imageContainer")}>
           <Image src={Cards} alt="Cards" className={cx("cards")} />
           <Image src={Eye} alt="Eye" className={cx("eye")} />
