@@ -1,8 +1,6 @@
-:root {
-  --image-size: min(50%, 200px);
-}
-
 .page {
+  --image-size: min(50%, 200px);
+
   display: flex;
   min-height: 100vh;
   background: url("../assets/images/background.png") no-repeat center center;
