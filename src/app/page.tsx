@@ -47,7 +47,7 @@ export default function Home() {
     const filename = await createPredictionFile(prediction);
     await sendToPrinterAction(filename);
     setPredictionState("success");
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 10000));
     setPredictionState("idle");
   };
 
