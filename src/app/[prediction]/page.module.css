@@ -38,5 +38,5 @@
   fill: var(--purple-light);
   stroke-width: 0.1px;
   stroke: var(--text-light);
-  filter: drop-shadow(0 2px 16px rgba(245, 184, 255, 0.10));
+  filter: drop-shadow(0 2px 16px rgba(245, 184, 255, 0.1));
 }

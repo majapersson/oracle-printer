@@ -13,12 +13,11 @@ export async function getPredictionAction(question: string) {
   });
 
   const response = await mistralClient.chat.complete({
-    model: 'open-mistral-7b',
+    model: "open-mistral-7b",
     messages: [
       {
-        role: 'system',
-        content:
-          `
+        role: "system",
+        content: `
             You are a printer machine that can answer questions in the role of a fortune teller.
             You will be given a question and you need to answer it in a short and concise way.
             
@@ -41,12 +40,12 @@ export async function getPredictionAction(question: string) {
             Do *not* include descriptions of actions/events, like "*The ink smudges slightly as the ribbon shifts*"
             `,
       },
-      { role: 'user', content: question },
+      { role: "user", content: question },
     ],
     temperature: 0.7,
   });
 
-  const rawText = (response.choices[0].message.content as string) ?? '';
-  const base64 = Buffer.from(rawText, 'utf-8').toString('base64');
+  const rawText = (response.choices[0].message.content as string) ?? "";
+  const base64 = Buffer.from(rawText, "utf-8").toString("base64");
   return encodeURIComponent(base64);
 }

@@ -4,12 +4,15 @@ import styles from "./page.module.css";
 
 const cx = classNames.bind(styles);
 
-export default async function Prediction({ params }: { params: { prediction: string } }) {
-
+export default async function Prediction({
+  params,
+}: {
+  params: { prediction: string };
+}) {
   const { prediction: predictionBase64Url } = await params;
 
   const predictionBase64 = decodeURIComponent(predictionBase64Url);
-  const prediction = Buffer.from(predictionBase64, 'base64').toString('utf-8');
+  const prediction = Buffer.from(predictionBase64, "base64").toString("utf-8");
 
   return (
     <div className={cx("page")}>

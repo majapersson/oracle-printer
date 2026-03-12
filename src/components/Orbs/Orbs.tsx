@@ -51,4 +51,3 @@ export default function Orbs({ count = 14, className }: OrbsProps) {
     </div>
   );
 }
-
