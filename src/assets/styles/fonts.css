@@ -18,10 +18,3 @@
   font-weight: 600;
   font-style: normal;
 }
-
-
-:root {
-  --font-bradford-ll: "Bradford LL", serif;
-  --font-suisse-intl: "Suisse Intl", serif;
-  --font-family-primary: var(--font-bradford-ll);
-}

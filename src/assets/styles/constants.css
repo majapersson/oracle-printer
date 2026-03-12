@@ -1,0 +1,13 @@
+:root {
+  --purple: #48284a;
+  --purple-light: #724d78;
+  --purple-dark: #2b172f;
+  --pink: #f5b8ff;
+
+  --text-light: #ffffff;
+
+  --font-bradford-ll: "Bradford LL", serif;
+  --font-suisse-intl: "Suisse Intl", serif;
+  --font-family-primary: var(--font-bradford-ll);
+  --title-size: clamp(2.25rem, 1.6786rem + 2.8571vw, 4.25rem);
+}

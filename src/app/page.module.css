@@ -1,3 +1,7 @@
+:root {
+  --image-size: min(50%, 200px);
+}
+
 .page {
   display: flex;
   min-height: 100vh;
@@ -19,14 +23,14 @@
   height: 100%;
   min-height: 100vh;
   position: relative;
-  padding: 80px;
+  padding: 60px;
   z-index: 1;
   isolation: isolate;
 }
 
 .crystalBall {
   height: auto;
-  width: min(50%, 250px);
+  width: min(50%, 150px);
 }
 
 .formSlot {
@@ -39,10 +43,10 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: min(100%, 1220px);
+  width: min(100%, 1024px);
   margin-top: 30px;
 
-  @media (min-width: 1220px) {
+  @media (min-width: 1024px) {
     position: absolute;
     bottom: 0;
     justify-content: space-between;
@@ -68,17 +72,17 @@
 }
 
 .cards {
-  width: min(50%, 300px);
+  width: var(--image-size);
   height: auto;
 }
 
 .eye {
-  width: min(50%, 300px);
+  width: var(--image-size);
   height: auto;
 }
 
 .swirl {
-  width: min(50%, 400px);
+  width: min(50%, 350px);
   height: auto;
   fill: var(--purple);
   opacity: 0.4;
