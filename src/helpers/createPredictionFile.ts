@@ -4,38 +4,25 @@ import { v4 as uuidv4 } from "uuid";
 import { getOutputPath } from "./getOutputPath";
 import fs from "node:fs/promises";
 
-
 const TOP_ASCII = `                                                                           
                                                                            
                                                                            
-  ++++++++                         ++ ++                         ++++++++
-++       ++++++++++              ++ +++ ++              ++++++++++       ++
-++     +   ++++    +++     ++++     + +     ++++    +++++    +++   +     ++
-+      ++  ++++++    +++++   ++     +++     ++   +++++    ++++++  ++      +
-++     ++  +    +++      ++++++    +++++    ++++++      +++    +  ++      +
-++     ++         +++++    ++++  +       +   +++     ++++         ++     ++
- +++++++              +++++                     ++++                ++++++
+ *******              *****                     *****              ******* 
+**     **         *****    ***   **     **   ***    *****         **     **
+**     **  *    ***      *** **    ** **    ** ***      ***    *  **     **
+**     **  *  ***    *****   **     ***     **   *****    ***  *  **     **
+**     *   ****    ***     *****     *     *****    *****   ****   *     **
+**       **********            **** *** ***             **********       **
+ *********                         ** **                         ********  
                                                                            
-                                                                           `
+                                                                           `;
 
-const BOTTOM_ASCII = `                                                                           
-                                                                           
- +++++++              +++++                     ++++                ++++++
-++     ++         +++++    ++++  +       +   +++     ++++         ++     ++
-++     ++  +    +++      ++++++    +++++    ++++++      +++    +  ++      +
-+      ++  ++++++    +++++   ++     +++     ++   +++++    ++++++  ++      +
-++     +   ++++    +++     ++++     + +     ++++    +++++    +++   +     ++
-++       ++++++++++              ++ +++ ++              ++++++++++       ++
-  ++++++++                         ++ ++                         ++++++++
-                                                                           
-                                                                           `
+const BOTTOM_ASCII = TOP_ASCII.split("\n").reverse().join("\n");
 
 const SIGNATURE = `                                                         
-                                               - The Oracle Printer        `
+                                               - The Oracle Printer        `;
 
-function wrapTextWithMargin(
-  text: string,
-) {
+function wrapTextWithMargin(text: string) {
   const maxLineLength = 75; // fixed width per line
   const minSidePadding = 8; // ideal side padding (can vary)
   const contentWrapWidth = Math.max(1, maxLineLength - 2 * minSidePadding);
@@ -75,7 +62,8 @@ function wrapTextWithMargin(
       continue;
     }
 
-    const nextLen = current.length === 0 ? word.length : current.length + 1 + word.length;
+    const nextLen =
+      current.length === 0 ? word.length : current.length + 1 + word.length;
     if (nextLen <= contentWrapWidth) {
       current = current.length === 0 ? word : `${current} ${word}`;
     } else {
@@ -97,24 +85,24 @@ function toPrintableASCII(str: string) {
   const characterMap = {
     "–": "-",
     "—": " - ",
-    "”": "\"",
-    "“": "\"",
+    "”": '"',
+    "“": '"',
     "’": "'",
     "‘": "'",
     "´": "'",
     "`": "'",
-  }
+  };
   const regex = new RegExp(Object.keys(characterMap).join("|"), "g");
-  return str.replace(regex, (match) => characterMap[match as keyof typeof characterMap])
+  return str
+    .replace(regex, (match) => characterMap[match as keyof typeof characterMap])
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^\x20-\x7E]/g, "");
 }
 
 export async function createPredictionFile(predictionBase64Url: string) {
-
   const predictionBase64 = decodeURIComponent(predictionBase64Url);
-  const prediction = Buffer.from(predictionBase64, 'base64').toString('utf-8');
+  const prediction = Buffer.from(predictionBase64, "base64").toString("utf-8");
   // Build the ASCII content with wrapped prediction text and margins
   const wrappedPrediction = wrapTextWithMargin(toPrintableASCII(prediction));
 
