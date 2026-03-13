@@ -100,15 +100,32 @@ function toPrintableASCII(str: string) {
     .replace(/[^\x20-\x7E]/g, "");
 }
 
+const TOTAL_LINES = 60;
+
 export async function createPredictionFile(predictionBase64Url: string) {
   const predictionBase64 = decodeURIComponent(predictionBase64Url);
   const prediction = Buffer.from(predictionBase64, "base64").toString("utf-8");
-  // Build the ASCII content with wrapped prediction text and margins
   const wrappedPrediction = wrapTextWithMargin(toPrintableASCII(prediction));
 
-  const asciiOutput = `${TOP_ASCII}\n${wrappedPrediction}\n${SIGNATURE}\n${BOTTOM_ASCII}\n`;
+  const contentLines = [
+    ...TOP_ASCII.split("\n"),
+    ...wrappedPrediction.split("\n"),
+    ...SIGNATURE.split("\n"),
+    ...BOTTOM_ASCII.split("\n"),
+  ];
 
-  // Persist as .txt next to previous outputs
+  const padding = Math.max(0, TOTAL_LINES - contentLines.length);
+  const topPadding = Math.floor(padding / 2);
+  const bottomPadding = padding - topPadding;
+
+  const allLines = [
+    ...Array<string>(topPadding).fill(""),
+    ...contentLines,
+    ...Array<string>(bottomPadding).fill(""),
+  ];
+
+  const asciiOutput = allLines.join("\n") + "\n";
+
   const filename = `${uuidv4()}.txt`;
   const outputPath = getOutputPath(filename);
 
